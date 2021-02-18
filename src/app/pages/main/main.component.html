@@ -1,0 +1,13 @@
+<div class="main-page">
+  <div class="title"></div>
+  <div class="content">
+    <div class="left">
+    </div>
+    <div class="right">
+      <main-table-component
+        [columns]="tableColumns"
+        [rows]="tableRows$ | async">
+      </main-table-component>
+    </div>
+  </div>
+</div>
