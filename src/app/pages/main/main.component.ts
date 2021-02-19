@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {MainApiService} from "./main.api.service";
 import {Main} from "../../entities/main/main.namespace";
 import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'main-component',
@@ -31,8 +32,12 @@ export class MainComponent {
     title: 'Special Notes'
   }];
   tableRows$: Observable<Main.TableRow[]>;
+  tableLoading: boolean;
 
   constructor(private apiService: MainApiService) {
-    this.tableRows$ = this.apiService.getTableRows();
+    this.tableLoading = true;
+    this.tableRows$ = this.apiService.getTableRows().pipe(tap(() => {
+      this.tableLoading = false;
+    }));
   }
 }

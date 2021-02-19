@@ -14,6 +14,9 @@ export namespace Main {
   }
 
   export interface TableRow {
-    [key: string]: string | number | Date;
+    lastUpdate: Date;
+    name: string;
+    salary: number;
+    specialNotes: string;
   }
 }

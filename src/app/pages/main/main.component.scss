@@ -1,0 +1,32 @@
+.main-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  position: relative;
+
+  .title {
+    font-size: 3rem;
+    height: 5rem;
+  }
+
+  .content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: calc(100% - 5rem);
+    position: relative;
+    width: 100%;
+
+    .left {
+      height: 100%;
+      width: 20rem;
+    }
+
+    .right {
+      height: 100%;
+      width: calc(100% - 21rem);
+    }
+  }
+}
