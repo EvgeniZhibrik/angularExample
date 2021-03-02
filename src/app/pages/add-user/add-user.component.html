@@ -1,0 +1,21 @@
+<form [formGroup]="userForm">
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name" >
+  </div>
+  <div>
+    <label>Salary</label>
+    <input type="number" formControlName="salary" >
+  </div>
+  <div>
+    <label>Last Update</label>
+    <input type="date" formControlName="lastUpdate">
+  </div>
+  <div *ngFor="let note of notesArray.controls;index as i;">
+    <input type="text" prettyInput [formControl]="note"><button (click)="deleteNote(i)">delete</button>
+  </div>
+  <button (click)="addNote()">Add Note</button>
+</form>
+<div class="error" *ngIf="userForm.invalid">{{userForm.errors}}</div>
+
+<button (click)="apply()" [disabled]="userForm.invalid">Apply</button>

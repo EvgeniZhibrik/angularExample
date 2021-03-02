@@ -17,6 +17,6 @@ export namespace Main {
     lastUpdate: Date;
     name: string;
     salary: number;
-    specialNotes: string;
+    specialNotes: string[];
   }
 }

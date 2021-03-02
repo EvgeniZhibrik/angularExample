@@ -1,8 +1,9 @@
 import {Component} from "@angular/core";
-import {MainApiService} from "./main.api.service";
 import {Main} from "../../entities/main/main.namespace";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {MainApiService} from "../../shared/services/main.api.service";
 
 @Component({
   selector: 'main-component',
@@ -28,16 +29,20 @@ export class MainComponent {
   }, {
     id: '4',
     field: 'specialNotes',
-    type: Main.ColumnType.Input,
+    type: Main.ColumnType.Text,
     title: 'Special Notes'
   }];
   tableRows$: Observable<Main.TableRow[]>;
   tableLoading: boolean;
 
-  constructor(private apiService: MainApiService) {
+  constructor(private apiService: MainApiService, private router: Router) {
     this.tableLoading = true;
     this.tableRows$ = this.apiService.getTableRows().pipe(tap(() => {
       this.tableLoading = false;
     }));
+  }
+
+  addUser(): void {
+    this.router.navigate(['add']);
   }
 }

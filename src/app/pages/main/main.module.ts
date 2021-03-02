@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {MainComponent} from "./main.component";
-import {MainApiService} from "./main.api.service";
 import {MainTableComponent} from "./main-table/main-table.component";
 import {CommonModule} from "@angular/common";
 import {NumberFormatModule} from "../../shared/pipes/number-format.pipe";
@@ -13,7 +12,7 @@ import {PrettyInputDirectiveModule} from "../../shared/directives/pretty-input.d
     NumberFormatModule,
     PrettyInputDirectiveModule
   ],
-  providers: [MainApiService],
+  providers: [],
   exports: [MainComponent]
 })
 export class MainModule {}
