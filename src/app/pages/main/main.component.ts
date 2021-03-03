@@ -1,16 +1,16 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Main} from "../../entities/main/main.namespace";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {MainApiService} from "../../shared/services/main.api.service";
+import {UsersService} from "../../shared/services/users.service";
 
 @Component({
   selector: 'main-component',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
   tableColumns: Main.TableColumn[] = [{
     id: '1',
     field: 'name',
@@ -34,12 +34,17 @@ export class MainComponent {
   }];
   tableRows$: Observable<Main.TableRow[]>;
   tableLoading: boolean;
+  showTotal = false;
 
-  constructor(private apiService: MainApiService, private router: Router) {
+  constructor(private usersService: UsersService, private router: Router) {
     this.tableLoading = true;
-    this.tableRows$ = this.apiService.getTableRows().pipe(tap(() => {
-      this.tableLoading = false;
+    this.tableRows$ = this.usersService.usersObservable().pipe(tap((rows) => {
+      this.tableLoading = !rows;
     }));
+  }
+
+  ngOnInit(): void {
+    this.usersService.updateUsers();
   }
 
   addUser(): void {

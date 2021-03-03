@@ -24,5 +24,13 @@
       </div>
     </td>
   </tr>
+  <tr *ngIf="withTotal" class="total-row">
+    <td></td>
+    <td *ngFor="let column of columns">
+      <div *ngIf="column.type === columnTypes.Currency">
+        {{totalRow[column.field] | numberFormat:2:true:true:true:unitsOfMeasurement.CURRENCY}}
+      </div>
+    </td>
+  </tr>
 </table>
 <div clas="loader" *ngIf="loading">LOADING...</div>

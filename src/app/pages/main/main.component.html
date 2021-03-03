@@ -7,8 +7,11 @@
       <main-table-component
         [columns]="tableColumns"
         [rows]="tableRows$ | async"
-      [loading]="tableLoading">
+        [loading]="tableLoading"
+        [withTotal]="showTotal">
       </main-table-component>
+      <input type="checkbox" name="cb" id="cb" [(ngModel)]="showTotal">
+      <label for="cb">Show total</label>
       <button (click)="addUser()">Add user</button>
     </div>
   </div>
